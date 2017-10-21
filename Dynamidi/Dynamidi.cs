@@ -21,9 +21,11 @@ namespace Dynamidi
     {
         // private static Dictionary<Pitch, bool> pitchesPressed = new Dictionary<Pitch, bool>();
         private static string pitch;
-        private static string cc_channel;
-        private static string cc_control;
-        private static string cc_value;
+        private static int cc_channel;
+        private static int cc_control;
+        private static int cc_value;
+        private static int output_value;
+
         private static int sliderOneValue = 0;
         private static int sliderTwoValue = 0;
         private static int sliderThreeValue = 0;
@@ -68,19 +70,19 @@ namespace Dynamidi
             return device;
         }
 
-        public void NoteOn(NoteOnMessage msg)
+        private void NoteOn(NoteOnMessage msg)
         {
             pitch = msg.Pitch.ToString();
         }
 
-        public void NoteOff(NoteOffMessage msg)
+        private void NoteOff(NoteOffMessage msg)
         {}
 
-        public void ControlChange(ControlChangeMessage msg)
+        private void ControlChange(ControlChangeMessage msg)
         {
-            cc_channel = msg.Channel.ToString();
-            cc_control = msg.Control.ToString();
-            cc_value = msg.Value.ToString();
+            cc_channel = (int)msg.Channel);
+            cc_control = (int)msg.Control;
+            cc_value = (int)msg.Value;
         }
 
         [CanUpdatePeriodically(true)]
@@ -90,29 +92,36 @@ namespace Dynamidi
         }
 
         [CanUpdatePeriodically(true)]
-        public static string cc_channelOut()
+        public static int cc_channelOut()
         {
             return cc_channel;
         }
 
         [CanUpdatePeriodically(true)]
-        public static string cc_controlOut()
+        public static int cc_controlOut()
         {
             return cc_control;
         }
 
         [CanUpdatePeriodically(true)]
-        public static string cc_valueOut()
+        public static int cc_valueOut()
         {
             return cc_value;
+        }
+
+        [CanUpdatePeriodically(true)]
+        public static int myControl(int sliderValue)
+        {
+            if (cc_control == sliderValue)
+            {
+                output_value = cc_value;
+            }
+            return output_value;
         }
 
         [MultiReturn(new[] { "Slider 1", "Slider 2", "Slider 3", "Slider 4", "Slider 5", "Slider 6", "Slider 7", "Slider 8", "Slider 9" })]
         public static Dictionary<string, int> apcMiniSliders(int slider, int value)
         {
-            
-           
-
             if (slider == 48) { sliderOneValue = value; }
             if (slider == 49) { sliderTwoValue = value; }
             if (slider == 50) { sliderThreeValue = value; }
