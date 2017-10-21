@@ -24,6 +24,15 @@ namespace Dynamidi
         private static string cc_channel;
         private static string cc_control;
         private static string cc_value;
+        private static int sliderOneValue = 0;
+        private static int sliderTwoValue = 0;
+        private static int sliderThreeValue = 0;
+        private static int sliderFourValue = 0;
+        private static int sliderFiveValue = 0;
+        private static int sliderSixValue = 0;
+        private static int sliderSevenValue = 0;
+        private static int sliderEightValue = 0;
+        private static int sliderNineValue = 0;
 
         public static InputDevice getDevice()
         {
@@ -97,5 +106,36 @@ namespace Dynamidi
         {
             return cc_value;
         }
+
+        public static Dictionary<string, int> apcMiniSliders(int slider, int value)
+        {
+            
+           
+
+            if (slider == 48) { sliderOneValue = value; }
+            if (slider == 49) { sliderTwoValue = value; }
+            if (slider == 50) { sliderThreeValue = value; }
+            if (slider == 51) { sliderFourValue = value; }
+            if (slider == 52) { sliderFiveValue = value; }
+            if (slider == 53) { sliderSixValue = value; }
+            if (slider == 54) { sliderSevenValue = value; }
+            if (slider == 55) { sliderEightValue = value; }
+            if (slider == 56) { sliderNineValue = value; }
+
+            return new Dictionary<string, int>
+            {
+                {"Slider 1", sliderOneValue },
+                {"Slider 2", sliderTwoValue },
+                {"Slider 3", sliderThreeValue },
+                {"Slider 4", sliderFourValue },
+                {"Slider 5", sliderFiveValue },
+                {"Slider 6", sliderSixValue },
+                {"Slider 7", sliderSevenValue },
+                {"Slider 8", sliderEightValue },
+                {"Slider 9", sliderNineValue }
+            };
+
+        }
+        
     }
 }
