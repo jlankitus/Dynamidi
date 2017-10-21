@@ -107,6 +107,7 @@ namespace Dynamidi
             return cc_value;
         }
 
+        [MultiReturn(new[] { "Slider 1", "Slider 2", "Slider 3", "Slider 4", "Slider 5", "Slider 6", "Slider 7", "Slider 8", "Slider 9" })]
         public static Dictionary<string, int> apcMiniSliders(int slider, int value)
         {
             
