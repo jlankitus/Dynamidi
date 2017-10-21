@@ -39,7 +39,10 @@ namespace Dynamidi
                 {
                     InputDevice inputDevice = InputDevice.InstalledDevices[0];
                     if (!inputDevice.IsOpen)
+                    {
                         inputDevice.Open();
+                    }
+                        
                     inputDevice.StartReceiving(null);
 
                     output = "device connected";
@@ -52,8 +55,39 @@ namespace Dynamidi
                     output += InputDevice.InstalledDevices.Count.ToString();
                 }
             }
+            
+            return output;
 
+        }
+
+        public static InputDevice getDevice()
+        {
+            InputDevice output = InputDevice.InstalledDevices[0];
             return output;
         }
+        public static string deviceName(InputDevice device)
+        {
+            string name = device.Name;
+            return name;
+        }
+
+        public static bool isReceiving(InputDevice device)
+        {
+            bool receiving = device.IsReceiving;
+            return receiving;
+        }
+
+        public static InputDevice deviceOpen(InputDevice device)
+        {
+            device.Open();
+            return device;
+        }
+
+        public static InputDevice deviceStart(InputDevice device)
+        {
+            device.StartReceiving(null);
+            return device;
+        }
+
     }
 }
