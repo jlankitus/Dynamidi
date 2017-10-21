@@ -14,13 +14,17 @@
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e7eac163-a1e7-49c4-a764-42526af96e6f" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Dynamidi.isReceiving" x="775.175219653091" y="159.10061279978" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="Dynamidi\bin\Debug\Dynamidi.dll" function="Dynamidi.Dynamidi.isReceiving@var">
       <PortInfo index="0" default="False" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="c116e6b3-1014-4f73-8898-0b2552b7fcf5" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Dynamidi.cc_channelOut" x="235.878197974265" y="480.673749507523" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="Dynamidi\bin\Debug\Dynamidi.dll" function="Dynamidi.Dynamidi.cc_channelOut" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="89d3719f-9882-42fd-a686-32e615f89377" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Dynamidi.cc_valueOut" x="235.878197974265" y="561.34820980311" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="Dynamidi\bin\Debug\Dynamidi.dll" function="Dynamidi.Dynamidi.cc_valueOut" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="c116e6b3-1014-4f73-8898-0b2552b7fcf5" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Dynamidi.cc_channelOut" x="234.691808852271" y="460.505134433626" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="Dynamidi\bin\Debug\Dynamidi.dll" function="Dynamidi.Dynamidi.cc_channelOut" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="89d3719f-9882-42fd-a686-32e615f89377" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Dynamidi.cc_valueOut" x="240.623754462241" y="674.055176392532" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="Dynamidi\bin\Debug\Dynamidi.dll" function="Dynamidi.Dynamidi.cc_valueOut" />
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="a592cf11-c683-48c6-bfef-ed3b23357c7d" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Dynamidi.NoteOut" x="247.742089194204" y="353.730113454174" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="Dynamidi\bin\Debug\Dynamidi.dll" function="Dynamidi.Dynamidi.NoteOut" />
     <CoreNodeModels.Watch guid="9a6ebaf5-a2c7-4d1e-9b25-f860c71efde8" type="CoreNodeModels.Watch" nickname="Watch" x="520.611587252804" y="469.996247409578" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
     </CoreNodeModels.Watch>
-    <CoreNodeModels.Watch guid="a2291e54-1369-47d4-b524-56d443710be4" type="CoreNodeModels.Watch" nickname="Watch" x="536.750737835224" y="567.111540339183" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+    <CoreNodeModels.Watch guid="a2291e54-1369-47d4-b524-56d443710be4" type="CoreNodeModels.Watch" nickname="Watch" x="454.889888417644" y="697.614343758514" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="f6fbedce-9fe3-4292-9eb1-45b90a34f5d5" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Dynamidi.cc_controlOut" x="234.691808852271" y="591.007937852957" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="Dynamidi\bin\Debug\Dynamidi.dll" function="Dynamidi.Dynamidi.cc_controlOut" />
+    <CoreNodeModels.Watch guid="d152dad8-bacc-4745-80e3-864890130963" type="CoreNodeModels.Watch" nickname="Watch" x="458.919352909121" y="593.380716096945" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
     </CoreNodeModels.Watch>
   </Elements>
@@ -31,6 +35,7 @@
     <Dynamo.Graph.Connectors.ConnectorModel start="c116e6b3-1014-4f73-8898-0b2552b7fcf5" start_index="0" end="9a6ebaf5-a2c7-4d1e-9b25-f860c71efde8" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="89d3719f-9882-42fd-a686-32e615f89377" start_index="0" end="a2291e54-1369-47d4-b524-56d443710be4" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="a592cf11-c683-48c6-bfef-ed3b23357c7d" start_index="0" end="1b36325c-0bdf-45a2-97b2-ea795f1dd492" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f6fbedce-9fe3-4292-9eb1-45b90a34f5d5" start_index="0" end="d152dad8-bacc-4745-80e3-864890130963" end_index="0" portType="0" />
   </Connectors>
   <Notes />
   <Annotations />
