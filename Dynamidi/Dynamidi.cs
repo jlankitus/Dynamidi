@@ -120,16 +120,19 @@ namespace Dynamidi
         }
 
         [CanUpdatePeriodically(true)]
-        public static List<int> NoteOut(int channel)
+        public static List<int> NoteOut(List<int> channel)
         {
-            if (!channels.Contains(channel))
-                channels.Add(channel);
-            int channelIndex = channels.IndexOf(channel);
-            if (pitch_channel == channels[channelIndex])
-                if (pitch_out.Count <= channelIndex)
-                    pitch_out.Add(pitch);
-                else
-                    pitch_out[channelIndex] = pitch;
+            foreach(int c in channel)
+            {
+                if (!channels.Contains(c))
+                    channels.Add(c);
+                int channelIndex = channels.IndexOf(c);
+                if (pitch_channel == channels[channelIndex])
+                    if (pitch_out.Count <= channelIndex)
+                        pitch_out.Add(pitch);
+                    else
+                        pitch_out[channelIndex] = pitch;
+            }
             return pitch_out;
         }
 
