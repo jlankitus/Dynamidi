@@ -20,11 +20,17 @@ namespace Dynamidi
     public class Dynamidi
     {
         // private static Dictionary<Pitch, bool> pitchesPressed = new Dictionary<Pitch, bool>();
-        private static string pitch;
+        private static int pitch;
+        private static int pitch_channel;
         private static int cc_channel;
         private static int cc_control;
         private static int cc_value;
-        private static int output_value;
+
+        private static int cc_control_out;
+        private static int cc_value_out;
+
+        private static List<int> channels = new List<int>();
+        private static List<int> pitch_out = new List<int>();
 
         private static int sliderOneValue = 0;
         private static int sliderTwoValue = 0;
@@ -36,9 +42,9 @@ namespace Dynamidi
         private static int sliderEightValue = 0;
         private static int sliderNineValue = 0;
 
-        public static InputDevice getDevice()
+        public static InputDevice getDevice(int deviceIndex = 0)
         {
-            InputDevice output = InputDevice.InstalledDevices[0];
+            InputDevice output = InputDevice.InstalledDevices[deviceIndex];
             return output;
         }
 
@@ -70,9 +76,30 @@ namespace Dynamidi
             return device;
         }
 
+        public static string controllerSetup(int deviceIndex = 0)
+        {
+            try
+            {
+                InputDevice device = getDevice(deviceIndex);
+                if (!device.IsOpen)
+                    deviceOpen(device);
+                if (!device.IsReceiving)
+                    deviceStart(device);
+                return "Controller " + deviceName(device) + " is ready";
+            }
+            catch(Exception ex)
+            {
+                return "Device failed to load. Try to separately get your device, open, and start." + "\n" + ex.ToString();
+            }
+        }
+
         private void NoteOn(NoteOnMessage msg)
         {
-            pitch = msg.Pitch.ToString();
+            int note = msg.Pitch.PositionInOctave();
+            int octave = msg.Pitch.Octave();
+            pitch = note + octave * 12;
+            pitch_channel = (int)msg.Channel;
+
         }
 
         private void NoteOff(NoteOffMessage msg)
@@ -87,9 +114,23 @@ namespace Dynamidi
         }
 
         [CanUpdatePeriodically(true)]
-        public static string NoteOut()
+        public static int channelOut()
         {
-            return pitch;
+            return pitch_channel;
+        }
+
+        [CanUpdatePeriodically(true)]
+        public static List<int> NoteOut(int channel)
+        {
+            if (!channels.Contains(channel))
+                channels.Add(channel);
+            int channelIndex = channels.IndexOf(channel);
+            if (pitch_channel == channels[channelIndex])
+                if (pitch_out.Count <= channelIndex)
+                    pitch_out.Add(pitch);
+                else
+                    pitch_out[channelIndex] = pitch;
+            return pitch_out;
         }
 
         [CanUpdatePeriodically(true)]
@@ -99,15 +140,19 @@ namespace Dynamidi
         }
 
         [CanUpdatePeriodically(true)]
-        public static int cc_controlOut()
+        public static int cc_controlOut(int channel)
         {
-            return cc_control;
+            if (cc_channel == channel)
+                cc_control_out = cc_control;
+            return cc_control_out;
         }
 
         [CanUpdatePeriodically(true)]
-        public static int cc_valueOut()
+        public static int cc_valueOut(int channel)
         {
-            return cc_value;
+            if (cc_channel == channel)
+                cc_value_out = cc_value;
+            return cc_value_out;
         }
 
         [CanUpdatePeriodically(true)]
@@ -137,8 +182,8 @@ namespace Dynamidi
                 if (slider == 55 ) {  return sliderEightValue; }
                 if (slider == 56 ) {  return sliderNineValue; }
             }
+
             return  0;                
-           
         }
 
         [MultiReturn(new[] { "Slider 1", "Slider 2", "Slider 3", "Slider 4", "Slider 5", "Slider 6", "Slider 7", "Slider 8", "Slider 9" })]
