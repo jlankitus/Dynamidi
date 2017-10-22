@@ -80,9 +80,10 @@ namespace Dynamidi
 
         private void ControlChange(ControlChangeMessage msg)
         {
-            cc_channel = (int)msg.Channel);
+            cc_channel = (int)msg.Channel;
             cc_control = (int)msg.Control;
             cc_value = (int)msg.Value;
+            string channelName = msg.Control.Name();
         }
 
         [CanUpdatePeriodically(true)]
@@ -110,13 +111,34 @@ namespace Dynamidi
         }
 
         [CanUpdatePeriodically(true)]
-        public static int myControl(int sliderValue)
+        public static int myControl(int slider, int value, int control)
         {
-            if (cc_control == sliderValue)
+            if (slider == control)
             {
-                output_value = cc_value;
+                if (slider == 48) { sliderOneValue = value; return sliderOneValue; }
+                if (slider == 49) { sliderTwoValue = value; return sliderTwoValue; }
+                if (slider == 50) { sliderThreeValue = value; return sliderThreeValue; }
+                if (slider == 51) { sliderFourValue = value; return sliderFourValue; }
+                if (slider == 52) { sliderFiveValue = value; return sliderFiveValue; }
+                if (slider == 53) { sliderSixValue = value; return sliderSixValue; }
+                if (slider == 54) { sliderSevenValue = value; return sliderSevenValue; }
+                if (slider == 55) { sliderEightValue = value; return sliderEightValue; }
+                if (slider == 56) { sliderNineValue = value; return sliderNineValue; }
             }
-            return output_value;
+            else
+            {
+                if (slider == 48) { return sliderOneValue; }
+                if (slider == 49) {  return sliderTwoValue; }
+                if (slider == 50 ) {  return sliderThreeValue; }
+                if (slider == 51 ) {  return sliderFourValue; }
+                if (slider == 52 ) {  return sliderFiveValue; }
+                if (slider == 53 ) {  return sliderSixValue; }
+                if (slider == 54 ) {  return sliderSevenValue; }
+                if (slider == 55 ) {  return sliderEightValue; }
+                if (slider == 56 ) {  return sliderNineValue; }
+            }
+            return  0;                
+           
         }
 
         [MultiReturn(new[] { "Slider 1", "Slider 2", "Slider 3", "Slider 4", "Slider 5", "Slider 6", "Slider 7", "Slider 8", "Slider 9" })]
